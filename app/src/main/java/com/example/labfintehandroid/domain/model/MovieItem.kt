@@ -6,7 +6,9 @@ data class MovieItem(
     val imagePreviewUrl : String,
     val data : String,
     val genre : List<Genre>,
-    val countries : List<Countries>
+    val imagePosterUrl : String,
+    val countries : List<Countries>,
+    val description : String
 )
 
 

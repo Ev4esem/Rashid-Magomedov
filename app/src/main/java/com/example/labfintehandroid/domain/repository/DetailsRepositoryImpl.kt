@@ -9,10 +9,10 @@ import com.example.labfintehandroid.domain.retrofit.MovieApi
 import javax.inject.Inject
 
 class DetailsRepositoryImpl @Inject constructor(private val movieApi : MovieApi) : DetailsRepository {
-    override suspend fun getMovieById(id : String,force : Boolean) : MovieDetails {
+    override suspend fun getMovieById(id : Int) : MovieDetails {
 
-        val movieList = movieApi.getMovieById(id).toMovieDetail()
+        val movieList = movieApi.getMovieById(id.toString()).toMovieDetail()
         return movieList
-    }
+        }
 
 }

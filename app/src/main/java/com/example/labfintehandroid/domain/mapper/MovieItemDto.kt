@@ -17,9 +17,12 @@ data class MovieItemDto(
     val data : String,
     @SerializedName("genres")
     val genre : List<GenreDto>,
+    @SerializedName("posterUrl")
+    val posterUrl: String,
     @SerializedName("countries")
-    val country : List<CountryDto>
-
+    val countries: List<CountryDto>,
+    @SerializedName("description")
+    val description: String?,
 )
 
 fun MovieItemDto.toMovieItem() : MovieItem = MovieItem(
@@ -27,8 +30,10 @@ fun MovieItemDto.toMovieItem() : MovieItem = MovieItem(
     title = title,
     data = data,
     genre = genre.toGenreList(),
-    imagePreviewUrl = imagePreviewUrl ,
-    countries = country.toCountriesList()
+    imagePreviewUrl = imagePreviewUrl,
+    imagePosterUrl = posterUrl,
+    countries = countries.toCountriesList(),
+    description = description.toString()
 )
 
 fun List<GenreDto>.toGenreList() : List<Genre> {

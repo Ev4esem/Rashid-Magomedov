@@ -85,11 +85,8 @@ class MovieFragment : Fragment() {
         }
 
         movieAdapter.clickItemMovie = { movieItem ->
-            val movieId = movieItem
-           findNavController().navigate(
-               R.id.action_movieFragment_to_movieDetailsFragment,
-               bundleOf(MOVIE_ID to movieId)
-           )
+            val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailsFragment(movieItem.id)
+           findNavController().navigate(action)
         }
 
         return binding.root

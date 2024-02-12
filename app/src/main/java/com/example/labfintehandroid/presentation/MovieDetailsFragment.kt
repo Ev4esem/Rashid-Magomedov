@@ -1,30 +1,31 @@
 package com.example.labfintehandroid.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.labfintehandroid.Utils.Resource
 import com.example.labfintehandroid.databinding.FragmentMovieDetailsBinding
 import com.example.labfintehandroid.domain.model.MovieDetails
+import com.example.labfintehandroid.domain.model.MovieItem
 import com.example.labfintehandroid.domain.retrofit.Constant.MOVIE_ID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
-    private var movieId : String? = null
+    val args : MovieDetailsFragmentArgs by navArgs()
     private val viewModel by viewModels<MovieDetailsViewModel>()
     private lateinit var binding : FragmentMovieDetailsBinding
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            movieId = it.getString(MOVIE_ID)
-        }
+
     }
 
     override fun onCreateView(
@@ -32,27 +33,16 @@ class MovieDetailsFragment : Fragment() {
         savedInstanceState : Bundle?
     ) : View {
         binding = FragmentMovieDetailsBinding.inflate(layoutInflater)
+        val movieId = args.movieId
+        viewModel.getMovieById(movieId)
 
         viewModel.movieDetails.observe(viewLifecycleOwner) { resourse ->
-        when(resourse) {
-            is Resource.Loading -> {
-
-            }
-            is Resource.Success -> {
-                val movieDetails = resourse.data
-
-                movieDetails?.let { movieDataDetails(it) }
-            }
-            is Resource.Error -> {
-
-            }
-
-        }
+               resourse?.let { movieDataDetails(it) }
         }
         binding.imBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        movieId?.let { viewModel.getMovieById(it) }
+
         return binding.root
     }
 

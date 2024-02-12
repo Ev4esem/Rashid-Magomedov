@@ -7,7 +7,9 @@ import com.example.labfintehandroid.domain.model.MovieList
 import com.example.labfintehandroid.domain.retrofit.MovieApi
 import javax.inject.Inject
 
-class MovieRepositoryImpl @Inject constructor(private val movieApi : MovieApi) : MovieRepository {
+class MovieRepositoryImpl @Inject constructor(
+    private val movieApi : MovieApi,
+) : MovieRepository {
 
     companion object {
         const val TAG = "MovieRepositoryImpl"
@@ -16,8 +18,11 @@ class MovieRepositoryImpl @Inject constructor(private val movieApi : MovieApi) :
     override suspend fun getMovieList() : MovieList {
         val movies = movieApi.getTopMovies(FilmQueryType.TOP_100.type)
         Log.d(TAG, "getMovieList: $movies")
-        return movies?.let { movieListDto ->
-            movieListDto.toMovieListItem()
-        } ?: MovieList(listOf())
+
+        return movies.toMovieListItem()
     }
+
+
+
+
 }

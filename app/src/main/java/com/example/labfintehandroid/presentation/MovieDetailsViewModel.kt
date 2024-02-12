@@ -1,5 +1,6 @@
 package com.example.labfintehandroid.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,20 +18,20 @@ class MovieDetailsViewModel @Inject constructor(
     private val getMovieByIdUseCase : GetMovieByIdUseCase
 ) : ViewModel() {
 
-    private val _movieDetails = MutableLiveData<Resource<MovieDetails>>()
-    val movieDetails : LiveData<Resource<MovieDetails>> = _movieDetails
+    private val _movieDetails = MutableLiveData<MovieDetails>()
+    val movieDetails : LiveData<MovieDetails> = _movieDetails
 
 
     fun getMovieById(
-        movieId : String
+        movieId : Int
     ) {
         viewModelScope.launch {
             try {
-                _movieDetails.postValue(Resource.Loading())
+
                 val movieItem = getMovieByIdUseCase(movieId)
-                _movieDetails.postValue(Resource.Success(movieItem))
+                _movieDetails.postValue(movieItem)
             } catch (e : Exception) {
-                _movieDetails.postValue((Resource.Error(e.message ?: "An error occurred")))
+                Log.e("DetailsError", e.message.toString())
             }
         }
     }

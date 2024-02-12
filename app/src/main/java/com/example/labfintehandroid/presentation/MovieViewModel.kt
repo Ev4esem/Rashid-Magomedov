@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.labfintehandroid.Utils.Resource
-import com.example.labfintehandroid.domain.model.MovieItem
 import com.example.labfintehandroid.domain.model.MovieList
 import com.example.labfintehandroid.domain.use_case.GetMovieListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(
-    private val getMovieListUseCase : GetMovieListUseCase
+    private val getMovieListUseCase : GetMovieListUseCase,
 ) : ViewModel() {
 
 
@@ -40,5 +39,6 @@ class MovieViewModel @Inject constructor(
 
         }
     }
+
 
 }

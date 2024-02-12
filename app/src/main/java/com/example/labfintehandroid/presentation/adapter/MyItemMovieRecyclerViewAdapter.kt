@@ -26,6 +26,7 @@ class MyItemMovieRecyclerViewAdapter(
 
     var clickItemMovie: ((MovieItem) -> Unit)? = null
 
+
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : MovieViewHolder {
 
         return MovieViewHolder(
