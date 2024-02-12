@@ -52,12 +52,23 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvData"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/popularity"
-                android:textSize="14sp" />
+                >
+
+
+                <TextView
+                    android:id="@+id/tvData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/popularity"
+                    android:textSize="14sp"
+                    android:layout_gravity="start"
+                    />
+            </LinearLayout>
+
+
 
         </LinearLayout>
 

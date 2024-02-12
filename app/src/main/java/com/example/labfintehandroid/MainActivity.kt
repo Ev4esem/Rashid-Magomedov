@@ -2,9 +2,6 @@ package com.example.labfintehandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import com.example.labfintehandroid.presentation.MovieViewModel
-import com.example.labfintehandroid.presentation.MyItemMovieRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
